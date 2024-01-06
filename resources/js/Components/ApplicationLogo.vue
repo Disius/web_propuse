@@ -1,12 +1,12 @@
 <script setup>
     const bgimage = {
-        backgroundImage:'url(/storage/img/logo.jpg)',
+        backgroundImage:'url(/storage/img/LOGONEC.png)',
         backgroundSize: 'cover'
     }
 </script>
 
 <template>
-    <div class="rounded-full"
+    <div class="rounded"
          :style="bgimage">
 
     </div>
