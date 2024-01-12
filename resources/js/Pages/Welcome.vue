@@ -1,28 +1,69 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import WelcomeLayout from "@/Layouts/WelcomeLayout.vue";
+import {ref, watch, watchEffect} from "vue";
+import Dialogo from "@/Components/Dialogo.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import Modal from "@/Components/Modal.vue";
+import TextInput from "@/Components/TextInput.vue";
+import DangerButton from "@/Components/DangerButton.vue";
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
+
 });
+const modal = ref(false);
+const info = ref("Somos una empresa mamalona")
+function CloseModal(){
+    modal.value = false
+}
+function MouseOver(){
+    modal.value = true
+}
+// console.log(modal.value)
+
+// watchEffect(() => {
+//     console.log(modal.value);
+//     // Realizar acciones adicionales aquí cuando modal cambie
+// });
+
 </script>
 
 <template>
-    <WelcomeLayout>
+    <WelcomeLayout :show="modal">
 
+        <template #quienesomos>
+            <Link href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg" @mouseover="MouseOver">¿QUIENES SOMOS?</Link>
+        </template>
+        <!-- Imagen de fondo -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/storage/img/FONDODEIMAGEN.png');">
+            <div class="w-full h-full bg-blue-600 opacity-40"></div>
+        </div>
+
+        <!-- Contenido centrado (puede ser un título, subtítulo, etc.) -->
+        <div class="absolute inset-0 flex items-center justify-center">
+            <!--                <h1 class="text-white text-4xl font-bold">Título de la sección</h1>-->
+        </div>
+
+        <!-- Contenedor para el logo de la empresa -->
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div style="background-image: url('/storage/img/LOGOENBLANCO.png');" class="w-96 h-96 bg-contain bg-no-repeat">
+
+            </div>
+        </div>
+
+        <Dialogo :show="modal" @close="CloseModal">
+            <div class="p-6">
+
+
+
+                <div class="mt-6 flex justify-end">
+                    <SecondaryButton @click="CloseModal"> Cerrar </SecondaryButton>
+                </div>
+            </div>
+        </Dialogo>
     </WelcomeLayout>
 </template>
 

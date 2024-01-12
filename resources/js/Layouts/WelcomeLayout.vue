@@ -1,33 +1,30 @@
 <script setup>
-function changeColor(b) {
-
-}
-
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import {Link} from "@inertiajs/vue3";
-import {computed} from "vue";
+import {computed, ref, watchEffect} from "vue";
 
-
+const props = defineProps({
+    show: Boolean
+})
 const year = computed(() => {
     let anio = new Date()
     return anio.getFullYear()
 })
 
-let isHovered = false;
+const modal = ref(false)
+const emit = defineEmits([
+    'update:show'
+])
 
-// function HoverMouse(isHover) {
-//     isHovered = isHover;
-//     // Aquí puedes realizar acciones basadas en el estado del hover
-//     if (isHover) {
-//         // Si está en hover, cambia el color a text-gray-900
-//         document.querySelector('a').classList.add('hover:text-gray-900');
-//         document.querySelector('a').classList.remove('text-gray-600');
-//     } else {
-//         // Si no está en hover, regresa al color original
-//         document.querySelector('a').classList.add('text-gray-600');
-//         document.querySelector('a').classList.remove('hover:text-gray-900');
-//     }
-// }
+function MouseOver(){
+    emit('update:show', true)
+}
+
+watchEffect(() => {
+    modal.value = props.show
+    // console.log(modal.value);
+    // Realizar acciones adicionales aquí cuando modal cambie
+});
 </script>
 
 <template>
@@ -40,35 +37,28 @@ let isHovered = false;
                             class="block h-16 w-32 fill-current text-gray-800 mb-5"
                         />
                     </Link>
-                    <nav class="space-x-4">
-                        <a href="#" class="text-gray-600" onmouseover="changeColor(true)" onmouseout="changeColor(false)">¿QUIENES SOMOS?</a>
-                        <a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</a>
-                        <a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO DE TRABAJO</a>
-                        <a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</a>
-                        <!-- Agrega más elementos del menú -->
-                    </nav>
+                        <nav class="space-x-4">
+                            <slot name="quienesomos"/>
+                            <Link href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</Link>
+                            <Link href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO DE TRABAJO</Link>
+                            <Link href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</Link>
+                            <!-- Agrega más elementos del menú -->
+                        </nav>
                 </div>
                 <div>
-                    <button class="bg-red-500 text-white px-4 py-2 rounded shadow-md hover:bg-red-500 transition duration-300">INICIAR SESIÓN</button>
+                    <Link :href="route('login')" as="button">
+                        <button class="bg-red-500 text-white px-4 py-2 rounded shadow-md hover:bg-red-500 transition duration-300">INICIAR SESIÓN</button>
+                    </Link>
                 </div>
             </div>
         </div>
         <div class="relative h-screen">
-            <!-- Imagen de fondo -->
-            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/storage/img/FONDODEIMAGEN.png');"></div>
-
-            <!-- Contenido centrado (puede ser un título, subtítulo, etc.) -->
-            <div class="absolute inset-0 flex items-center justify-center">
-                <h1 class="text-white text-4xl font-bold">Título de la sección</h1>
-            </div>
-
-            <!-- Contenedor para el logo de la empresa -->
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div style="background-image: url('/storage/img/LOGOENBLANCO.png');" class="w-96 h-96 bg-contain bg-no-repeat">
-
-                </div>
-            </div>
+            <!-- Main con el contenido -->
+            <main class="absolute inset-0 flex items-center justify-center">
+                <slot/>
+            </main>
         </div>
+
         <footer class="bg-gray-900 text-white py-6">
             <div class="container mx-auto text-center">
                 <p>&copy; {{year}} CORPORATIVO NAERCRIS S.A. DE C.V. Todos los derechos reservados.</p>
