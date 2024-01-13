@@ -20,4 +20,5 @@ use Inertia\Inertia;
 
 Route::prefix('configuracion')->group(function (){
     Route::get('/inicio', [ConfigurationController::class, 'configuration'])->name('config.main');
+    Route::post('/guardar/empresa', [ConfigurationController::class, 'create_empresa'])->name('create.empresa');
 });

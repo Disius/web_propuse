@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('empresa_naercris', function (Blueprint $table) {
             $table->id();
-            $table->string('quienesSomos');
-            $table->string('mision');
-            $table->string('vision');
-            $table->string('valores');
-            $table->string('historia');
+            $table->longText('quienesSomos');
+            $table->longText('mision');
+            $table->longText('vision');
+            $table->longText('valores');
+            $table->longText('historia');
             $table->timestamps();
         });
     }

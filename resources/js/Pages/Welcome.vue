@@ -11,23 +11,24 @@ import TextInput from "@/Components/TextInput.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
-defineProps({
-
+const props = defineProps({
+    empresa: Array
 });
 const modal = ref(false);
-const info = ref("Somos una empresa mamalona")
 function CloseModal(){
     modal.value = false
 }
 function MouseOver(){
     modal.value = true
 }
-// console.log(modal.value)
+const isDropdownOpen = ref(false);
 
-// watchEffect(() => {
-//     console.log(modal.value);
-//     // Realizar acciones adicionales aquí cuando modal cambie
-// });
+const toggleDropdown = () => {
+    isDropdownOpen.value = !isDropdownOpen.value;
+};
+
+
+
 
 </script>
 
@@ -58,6 +59,56 @@ function MouseOver(){
             <div class="p-6">
 
 
+                <div class="text-justify">
+                    {{props.empresa[0].quienesSomos}}
+                </div>
+<!--                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">-->
+<!--                    <div class="flex justify-center w-full">-->
+<!--                        -->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-5">
+                    <div class="flex justify-center">
+                        <button @click="toggleDropdown" class="bg-red-500 text-white px-4 py-2 rounded">
+                            MISIÓN Y VISION
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <button @click="toggleDropdown" class="bg-red-500 text-white px-4 py-2 rounded">
+                            NUESTRA HISTORIA
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <button @click="toggleDropdown" class="bg-red-500 text-white px-4 py-2 rounded">
+                            VALORES
+                        </button>
+                    </div>
+                </div>
+<!--                <div class="relative mt-5">-->
+<!--                    <transition name="fade">-->
+<!--                        <div v-if="isDropdownOpen" @click="closeDropdown" class="fixed inset-0 z-10"></div>-->
+<!--                    </transition>-->
+
+<!--                    <transition name="fade">-->
+<!--                        <div v-if="isDropdownOpen" class="absolute mt-2 bg-white rounded-md">-->
+<!--                            &lt;!&ndash; Contenido del menú desplegable &ndash;&gt;-->
+<!--                            <ul>-->
+<!--                                <li>-->
+<!--                                    <div class="text-justify">-->
+<!--                                        ● {{props.empresa[0].mision}}-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <div class="text-justify mt-4">-->
+<!--                                        ● {{props.empresa[0].vision}}-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                &lt;!&ndash;                                <li><a href="#">Valores</a></li>&ndash;&gt;-->
+<!--                                &lt;!&ndash; Puedes agregar más opciones según sea necesario &ndash;&gt;-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </transition>-->
+<!--                </div>-->
 
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="CloseModal"> Cerrar </SecondaryButton>
@@ -68,12 +119,11 @@ function MouseOver(){
 </template>
 
 <style>
-.bg-dots-darker {
-    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
 }
-@media (prefers-color-scheme: dark) {
-    .dark\:bg-dots-lighter {
-        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
-    }
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
 }
 </style>
