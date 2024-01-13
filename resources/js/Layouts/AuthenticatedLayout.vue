@@ -36,7 +36,7 @@ const showingNavigationDropdown = ref(false);
 
                         <!-- Mover "Cerrar sesión" al final -->
                         <div class="flex justify-end">
-                            <NavLink :href="route('logout')" as="button" method="post">
+                            <NavLink :href="route('logout')" as="button" method="post" class="hover:bg-red-500">
                                 <div class="text-white">Cerrar sesión</div>
                             </NavLink>
                         </div>

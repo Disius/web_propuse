@@ -17,8 +17,8 @@ import { Head, Link } from '@inertiajs/vue3';
                     <div class="flex justify-start">
                         <div class="max-w-6xl mx-auto">
                             <div class="w-full sm:w-2/3 lg:w-1/12 xl:w-11/12">
-                                <Link href="#" as="button">
-                                    <div class="max-w-full rounded overflow-hidden shadow-lg relative transition-transform transform hover:scale-105">
+                                <Link :href="route('config.main')" as="button">
+                                    <div class="max-w-full rounded overflow-hidden shadow-lg relative transition-transform transform hover:scale-105 hover:bg-red-500 hover:ring-red-500">
                                         <div class="flex items-center justify-center">
                                             <!-- Imagen centrada y grande -->
                                             <img src="/storage/img/tool.png" alt="">
@@ -27,7 +27,7 @@ import { Head, Link } from '@inertiajs/vue3';
                                         <!--            <img class="w-full" src="imagen.jpg" alt="Imagen">-->
                                         <div class="px-6 py-4 flex justify-center">
                                             <p class="text-gray-700 text-base">
-                                                Establecer parametros.
+                                                Configuración.
                                             </p>
                                         </div>
                                     </div>
@@ -38,19 +38,19 @@ import { Head, Link } from '@inertiajs/vue3';
                     <div class="flex justify-start">
                         <div class="max-w-4xl mx-auto">
                             <div class="w-full sm:w-2/3 lg:w-1/2 xl:w-11/12">
-                                <div class="max-w-full rounded overflow-hidden shadow-lg">
-                                    <!--            <img class="w-full" src="imagen.jpg" alt="Imagen">-->
-                                    <div class="px-6 py-4">
-                                        <div class="font-bold text-xl mb-2">Título de la Tarjeta</div>
-                                        <p class="text-gray-700 text-base">
-                                            Contenido de la tarjeta. Puedes agregar aquí información adicional sobre la tarjeta.
-                                        </p>
-                                    </div>
-                                    <div class="px-6 py-4">
-                                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#Tag1</span>
-                                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#Tag2</span>
-                                    </div>
-                                </div>
+<!--                                <div class="max-w-full rounded overflow-hidden shadow-lg">-->
+<!--                                    &lt;!&ndash;            <img class="w-full" src="imagen.jpg" alt="Imagen">&ndash;&gt;-->
+<!--                                    <div class="px-6 py-4">-->
+<!--                                        <div class="font-bold text-xl mb-2">Título de la Tarjeta</div>-->
+<!--                                        <p class="text-gray-700 text-base">-->
+<!--                                            Contenido de la tarjeta. Puedes agregar aquí información adicional sobre la tarjeta.-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="px-6 py-4">-->
+<!--                                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#Tag1</span>-->
+<!--                                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#Tag2</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </div>
