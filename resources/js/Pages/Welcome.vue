@@ -1,121 +1,97 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import WelcomeLayout from "@/Layouts/WelcomeLayout.vue";
-import {ref, watch, watchEffect} from "vue";
-import Dialogo from "@/Components/Dialogo.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import Modal from "@/Components/Modal.vue";
-import TextInput from "@/Components/TextInput.vue";
-import DangerButton from "@/Components/DangerButton.vue";
+import {computed, ref, watch, watchEffect} from "vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import MenuMain from "@/Components/MenuQuienes.vue";
+import Dialogo from "@/Components/Dialogo.vue";
+import Dropdown from "@/Components/Dropdown.vue";
 
 const props = defineProps({
-    empresa: Array
+    empresa: Array,
 });
-const modal = ref(false);
-function CloseModal(){
-    modal.value = false
-}
-function MouseOver(){
-    modal.value = true
-}
-const isDropdownOpen = ref(false);
 
-const toggleDropdown = () => {
-    isDropdownOpen.value = !isDropdownOpen.value;
+const menu = ref(false)
+const dialogo = ref(false)
+const menuItemsConocenos = [
+    {id: 1, title: "¿QUIENES SOMOS?"},
+    {id: 2, title: "MISIÓN Y VISION"},
+    {id: 3, title: "NUESTRA HISTORIA"},
+    {id: 4, title: "VALORES"},
+]
+const selectData = ref("")
+const year = computed(() => {
+    let date = new Date();
+    return date.getFullYear()
+})
+
+const leaveMenu = (e) => {
+    console.log(e.target)
+    menu.value = false
+}
+const handleHoverItem = (item) => {
+    // Lógica para manejar el evento de hover-item aquí
+    console.log(`Se ha hover sobre: ${item}`);
 };
-
-
-
 
 </script>
 
 <template>
-    <WelcomeLayout :show="modal">
-
-        <template #quienesomos>
-            <Link href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 text-lg" @mouseover="MouseOver">¿QUIENES SOMOS?</Link>
-        </template>
-        <!-- Imagen de fondo -->
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/storage/img/FONDODEIMAGEN.png');">
-            <div class="w-full h-full bg-blue-600 opacity-40"></div>
+    <div>
+        <div class="bg-white shadow-md">
+            <div class="container mx-auto px-4 py-6 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <Link :href="route('main')">
+                        <ApplicationLogo
+                            class="block h-16 w-32 fill-current text-gray-800 mb-5"
+                        />
+                    </Link>
+                    <nav class="space-x-4">
+                        <Link href="#" class="relative text-red-600 hover:text-gray-900 transition duration-300 text-lg"
+                        @mouseover="menu = true"
+                        >
+                            CONOCENOS
+                            <MenuMain :show="menu" @hover-item="handleHoverItem" @close="menu = false"></MenuMain>
+                        </Link>
+                        <Link href="#" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</Link>
+                        <Link href="#" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO DE TRABAJO</Link>
+                        <Link href="#" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</Link>
+                        <!-- Agrega más elementos del menú -->
+                    </nav>
+                </div>
+                <div>
+                    <Link :href="route('login')" as="button">
+                        <button class="bg-red-500 text-white px-4 py-2 rounded shadow-md hover:bg-red-500 transition duration-300">INICIAR SESIÓN</button>
+                    </Link>
+                </div>
+            </div>
         </div>
+        <div class="relative h-screen bg-cover bg-center" style="background-image:  linear-gradient(rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.3)),  url('/storage/img/FONDODEIMAGEN.png');">
+            <!-- Contenido de la sección con la imagen de fondo -->
+            <div class="container mx-auto flex items-center justify-center h-full">
+                <!-- Contenido adicional, como tu logo -->
+<!--                <img src="/tu-ruta/logo.png" alt="Logo" class="h-24 w-auto" />-->
+                <div style="background-image: url('/storage/img/LOGOENBLANCO.png');" class="w-96 h-96 bg-contain bg-no-repeat">
 
-        <!-- Contenido centrado (puede ser un título, subtítulo, etc.) -->
-        <div class="absolute inset-0 flex items-center justify-center">
-            <!--                <h1 class="text-white text-4xl font-bold">Título de la sección</h1>-->
-        </div>
-
-        <!-- Contenedor para el logo de la empresa -->
-        <div class="absolute inset-0 flex items-center justify-center">
-            <div style="background-image: url('/storage/img/LOGOENBLANCO.png');" class="w-96 h-96 bg-contain bg-no-repeat">
-
+                </div>
+                <!-- Contenido del main -->
+                    <main class="mt-8">
+                    <Dialogo :show="dialogo" @close="dialogo = false">
+                        <div class="flex justify-center items-center">
+                            <div class="p-4 text-justify font-semibold text-lg text-gray-800">
+                                {{selectData}}
+                            </div>
+                        </div>
+                    </Dialogo>
+                </main>
             </div>
         </div>
 
-        <Dialogo :show="modal" @close="CloseModal">
-            <div class="p-6">
-
-
-                <div class="text-justify">
-                    {{props.empresa[0].quienesSomos}}
-                </div>
-<!--                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">-->
-<!--                    <div class="flex justify-center w-full">-->
-<!--                        -->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-5">
-                    <div class="flex justify-center">
-                        <button @click="toggleDropdown" class="bg-red-500 text-white px-4 py-2 rounded">
-                            MISIÓN Y VISION
-                        </button>
-                    </div>
-                    <div class="flex justify-center">
-                        <button @click="toggleDropdown" class="bg-red-500 text-white px-4 py-2 rounded">
-                            NUESTRA HISTORIA
-                        </button>
-                    </div>
-                    <div class="flex justify-center">
-                        <button @click="toggleDropdown" class="bg-red-500 text-white px-4 py-2 rounded">
-                            VALORES
-                        </button>
-                    </div>
-                </div>
-<!--                <div class="relative mt-5">-->
-<!--                    <transition name="fade">-->
-<!--                        <div v-if="isDropdownOpen" @click="closeDropdown" class="fixed inset-0 z-10"></div>-->
-<!--                    </transition>-->
-
-<!--                    <transition name="fade">-->
-<!--                        <div v-if="isDropdownOpen" class="absolute mt-2 bg-white rounded-md">-->
-<!--                            &lt;!&ndash; Contenido del menú desplegable &ndash;&gt;-->
-<!--                            <ul>-->
-<!--                                <li>-->
-<!--                                    <div class="text-justify">-->
-<!--                                        ● {{props.empresa[0].mision}}-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <div class="text-justify mt-4">-->
-<!--                                        ● {{props.empresa[0].vision}}-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                &lt;!&ndash;                                <li><a href="#">Valores</a></li>&ndash;&gt;-->
-<!--                                &lt;!&ndash; Puedes agregar más opciones según sea necesario &ndash;&gt;-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </transition>-->
-<!--                </div>-->
-
-                <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="CloseModal"> Cerrar </SecondaryButton>
-                </div>
+        <footer class="bg-gray-900 text-white py-6">
+            <div class="container mx-auto text-center">
+                <p>&copy;  {{year}} CORPORATIVO NAERCRIS S.A. DE C.V. Todos los derechos reservados.</p>
             </div>
-        </Dialogo>
-    </WelcomeLayout>
+        </footer>
+    </div>
 </template>
 
 <style>
