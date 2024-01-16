@@ -31,48 +31,31 @@ const emitHoverEvent = (item) => {
 const resetHoverItem = () => {
     hoverItem.value = '';
 };
-watchEffect(() => {
-    if (props.show) {
-        const handleDocumentClick = (event) => {
-            if (!event.target.closest('[data-menu]')) {
-                emit('close');
-            }
-        };
-
-        document.addEventListener('click', handleDocumentClick);
-    }
-});
-onBeforeUnmount(() => {
-    document.removeEventListener('click', handleDocumentClick);
-});
+// watchEffect(() => {
+//     if (props.show) {
+//         const handleDocumentClick = (event) => {
+//             if (!event.target.closest('[data-menu]')) {
+//                 emit('close');
+//             }
+//         };
+//
+//         document.addEventListener('click', handleDocumentClick);
+//     }
+// });
+// onBeforeUnmount(() => {
+//     document.removeEventListener('click', handleDocumentClick);
+// });
 </script>
 
 <template>
-    <v-menu v-model="props.show" open-on-hover transition="slide-y-transition" location="bottom">
-        <v-list>
-            <v-list-item @mouseover="emitHoverEvent('quienesSomos')" @mouseleave="resetHoverItem">
-                <v-list-item-title :class="{ 'bg-red-500': hoverItem === 'quienesSomos', 'text-white': hoverItem === 'quienesSomos' }">
-                    ¿QUIENES SOMOS?
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item @mouseover="emitHoverEvent('misionVision')" @mouseleave="resetHoverItem">
-                <v-list-item-title :class="{ 'bg-red-500': hoverItem === 'misionVision', 'text-white': hoverItem === 'quienesSomos' } ">
-                    MISIÓN Y VISIÓN
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item @mouseover="emitHoverEvent('nuestraHistoria')" @mouseleave="resetHoverItem">
-                <v-list-item-title :class="{ 'bg-red-500': hoverItem === 'nuestraHistoria', 'text-white': hoverItem === 'quienesSomos' } ">
-                    NUESTRA HISTORIA
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item @mouseover="emitHoverEvent('valores')" @mouseleave="resetHoverItem">
-                <v-list-item-title :class="{ 'bg-red-500': hoverItem === 'valores', 'text-white': hoverItem === 'quienesSomos' } ">
-                    VALORES
-                </v-list-item-title>
-            </v-list-item>
-            <!-- Agrega más elementos según tus necesidades -->
-        </v-list>
-    </v-menu>
+    <div class="container mx-auto px-6">
+        <div class="relative text-left inline-flex flex-col">
+            <!--         Aqui el el boton para activar el menu   -->
+            <div class="absolute w-full mt-12 bg-white border-t border-gray-300">
+                <a class="block p-3 border-b border-g"></a>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>

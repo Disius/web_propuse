@@ -14,13 +14,18 @@ class EmpresaNaercris extends Model
     protected $fillable = [
       'quienesSomos', 'mision', 'vision', 'valores', 'historia'
     ];
-
+    public static function getEmpresa(){
+        return EmpresaNaercris::latest('id')->get();
+    }
     public static function createEmpresa($request){
         $empresa = EmpresaNaercris::create($request->all());
         $empresa->save();
         return $empresa;
     }
-    public static function getEmpresa(){
-        return EmpresaNaercris::latest('id')->get();
+    public static function updateEmpresa($request, $id){
+        $empresa = EmpresaNaercris::find($id);
+        $empresa->update($request->all());
+        $empresa->save();
+        return $empresa;
     }
 }

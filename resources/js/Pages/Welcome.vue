@@ -1,10 +1,9 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import {computed, ref, watch, watchEffect} from "vue";
+import {computed, onMounted, onUnmounted, ref, watch, watchEffect} from "vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import MenuMain from "@/Components/MenuQuienes.vue";
-import Dialogo from "@/Components/Dialogo.vue";
-import Dropdown from "@/Components/Dropdown.vue";
+import InfoModal from "@/Components/InfoModal.vue";
+import {da} from "vuetify/locale";
 
 const props = defineProps({
     empresa: Array,
@@ -12,27 +11,45 @@ const props = defineProps({
 
 const menu = ref(false)
 const dialogo = ref(false)
-const menuItemsConocenos = [
-    {id: 1, title: "¿QUIENES SOMOS?"},
-    {id: 2, title: "MISIÓN Y VISION"},
-    {id: 3, title: "NUESTRA HISTORIA"},
-    {id: 4, title: "VALORES"},
-]
-const selectData = ref("")
+const HoverItem = ref("")
 const year = computed(() => {
     let date = new Date();
     return date.getFullYear()
 })
-
-const leaveMenu = (e) => {
-    console.log(e.target)
-    menu.value = false
+const toggleMenu = () => {
+    menu.value = true
 }
-const handleHoverItem = (item) => {
-    // Lógica para manejar el evento de hover-item aquí
-    console.log(`Se ha hover sobre: ${item}`);
+const handlerHoverItem = (item) => {
+    HoverItem.value = item;
+    // console.log(`Se ha hover sobre: ${item}`);
+};
+const resetHoverItem = () => {
+    HoverItem.value = '';
+};
+const closeOnEscape = (e) => {
+    menu.value = false
 };
 
+const formatValue = (text) => {
+    const valuesArray = text.split('·')
+    return valuesArray.join("<br>· ")
+}
+
+watch(
+    () => menu.value,
+    () => {
+        if (menu.value) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = null;
+        }
+    }
+);
+onMounted(() => document.addEventListener('click', closeOnEscape));
+onUnmounted(() => {
+    document.removeEventListener('click', closeOnEscape);
+    document.body.style.overflow = null;
+});
 </script>
 
 <template>
@@ -45,18 +62,27 @@ const handleHoverItem = (item) => {
                             class="block h-16 w-32 fill-current text-gray-800 mb-5"
                         />
                     </Link>
-                    <nav class="space-x-4">
-                        <Link href="#" class="relative text-red-600 hover:text-gray-900 transition duration-300 text-lg"
-                        @mouseover="menu = true"
-                        >
-                            CONOCENOS
-                            <MenuMain :show="menu" @hover-item="handleHoverItem" @close="menu = false"></MenuMain>
-                        </Link>
-                        <Link href="#" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</Link>
-                        <Link href="#" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO DE TRABAJO</Link>
-                        <Link href="#" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</Link>
-                        <!-- Agrega más elementos del menú -->
-                    </nav>
+                    <div class="container mx-auto px-6">
+                        <nav class="flex items-center justify-between space-x-4">
+                            <div class="relative text-left inline-flex flex-col">
+                                <button
+                                    class="text-red-600 hover:text-gray-900 transition duration-300 text-lg"
+                                    @mouseover="toggleMenu"
+                                >
+                                    CONOCENOS
+                                </button>
+                                <div v-if="menu" class="absolute mt-8 w-96 bg-white border-t border-gray-300 z-20">
+                                    <a @mouseover="handlerHoverItem('quienesSomos')" @mouseleave="resetHoverItem" @click="dialogo = true" class="block p-3 border-b border-gray-300 hover:bg-red-500 hover:text-white">¿QUIENES SOMOS?</a>
+                                    <a @mouseover="handlerHoverItem('misionVision')" @mouseleave="resetHoverItem" @click="dialogo = true" class="block p-3 border-b border-gray-300 hover:bg-red-500 hover:text-white">MISIÓN Y VISIÓN</a>
+                                    <a @mouseover="handlerHoverItem('historia')" @mouseleave="resetHoverItem" @click="dialogo = true" class="block p-3 border-b border-gray-300 hover:bg-red-500 hover:text-white">NUESTRA HISTORIA</a>
+                                    <a @mouseover="handlerHoverItem('valores')" @mouseleave="resetHoverItem" @click="dialogo = true" class="block p-3 border-b border-gray-300 hover:bg-red-500 hover:text-white">VALORES</a>
+                                </div>
+                            </div>
+                            <button class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</button>
+                            <button class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO DE TRABAJO</button>
+                            <button class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</button>
+                        </nav>
+                    </div>
                 </div>
                 <div>
                     <Link :href="route('login')" as="button">
@@ -65,23 +91,41 @@ const handleHoverItem = (item) => {
                 </div>
             </div>
         </div>
-        <div class="relative h-screen bg-cover bg-center" style="background-image:  linear-gradient(rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.3)),  url('/storage/img/FONDODEIMAGEN.png');">
-            <!-- Contenido de la sección con la imagen de fondo -->
+        <div class="relative h-screen bg-cover bg-center w-full" style="background-image:  linear-gradient(rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.3)),  url('/storage/img/FONDODEIMAGEN.png');">
             <div class="container mx-auto flex items-center justify-center h-full">
-                <!-- Contenido adicional, como tu logo -->
-<!--                <img src="/tu-ruta/logo.png" alt="Logo" class="h-24 w-auto" />-->
                 <div style="background-image: url('/storage/img/LOGOENBLANCO.png');" class="w-96 h-96 bg-contain bg-no-repeat">
 
                 </div>
-                <!-- Contenido del main -->
                     <main class="mt-8">
-                    <Dialogo :show="dialogo" @close="dialogo = false">
+                    <InfoModal :show="dialogo" @close="dialogo = false">
                         <div class="flex justify-center items-center">
                             <div class="p-4 text-justify font-semibold text-lg text-gray-800">
-                                {{selectData}}
+                                <template v-if="HoverItem === 'quienesSomos'">
+                                    {{props.empresa[0].quienesSomos}}
+                                </template>
+                                <template v-if="HoverItem === 'misionVision'">
+                                    <div class="flex justify-center items-center mt-2">
+                                        Misión
+                                    </div>
+                                    {{props.empresa[0].mision}}
+                                    <div class="flex justify-center items-center mt-4">
+                                        Vision
+                                    </div>
+                                    <div class="text-justify">
+                                        {{props.empresa[0].vision}}
+                                    </div>
+                                </template>
+                                <template v-if="HoverItem === 'historia'">
+                                    <div class="text-justify">
+                                        {{props.empresa[0].historia}}
+                                    </div>
+                                </template>
+                                <template v-if="HoverItem === 'valores'">
+                                    <div class="text-justify" v-html="formatValue(props.empresa[0].valores)"></div>
+                                </template>
                             </div>
                         </div>
-                    </Dialogo>
+                    </InfoModal>
                 </main>
             </div>
         </div>

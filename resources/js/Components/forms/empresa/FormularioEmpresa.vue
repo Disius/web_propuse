@@ -4,9 +4,12 @@ import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import {useForm} from "@inertiajs/vue3";
+import {onMounted} from "vue";
+import TextArea from "@/Components/TextArea.vue";
 
 const props = defineProps({
-    show: Boolean
+    show: Boolean,
+    empresa: Array,
 })
 
 const emit = defineEmits([
@@ -24,60 +27,74 @@ const form = useForm({
 function submit(){
     emit('form:empresa', form)
 }
+
+
+onMounted(() => {
+    props.empresa[0].quienesSomos !== null ? form.quienesSomos = props.empresa[0].quienesSomos : form.quienesSomos
+    props.empresa[0].mision !== null ? form.mision = props.empresa[0].mision : form.mision
+    props.empresa[0].vision !== null ? form.vision = props.empresa[0].vision : form.vision
+    props.empresa[0].valores !== null ? form.valores = props.empresa[0].valores : form.valores
+    props.empresa[0].historia !== null ? form.historia = props.empresa[0].historia : form.vision
+})
 </script>
 
 <template>
     <teleport to="body">
-        <div v-if="show" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div class="bg-white p-8 rounded-md shadow-lg w-full md:w-9/12">
+        <div v-if="show" class="fixed inset-0 flex items-center justify-center bg-opacity-50" scroll-region>
+          <div class="bg-white p-8 rounded-md shadow-lg w-full md:w-9/12 form-container">
               <form @submit.prevent="submit">
                   <!-- Campos del formulario -->
                   <!-- ... -->
                   <InputLabel for="quienes" value="Ingresar Quienes somos" />
-                  <TextInput
+                  <TextArea
                       id="name"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 block w-full mb-5"
                       v-model="form.quienesSomos"
                       autofocus
                       required
+                      :rows="4"
                   />
 
                   <InputLabel for="mision" value="Ingresar la misión" />
-                  <TextInput
+                  <TextArea
                       id="name"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 block w-full mb-5"
                       v-model="form.mision"
                       autofocus
                       required
+                      :rows="4"
                   />
                   <InputLabel for="vision" value="Ingresar visión" />
-                  <TextInput
+                  <TextArea
                       id="name"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 block w-full mb-5"
                       v-model="form.vision"
                       autofocus
                       required
+                      :rows="4"
                   />
                   <InputLabel for="valores" value="Ingresar valores" />
-                  <TextInput
+                  <TextArea
                       id="name"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 block w-full mb-5"
                       v-model="form.valores"
                       autofocus
                       required
+                      :rows="4"
                   />
                   <InputLabel for="historia" value="Ingresar la historia" />
-                  <TextInput
+                  <TextArea
                       id="name"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 block w-full mb-5"
                       v-model="form.historia"
                       autofocus
                       required
+                      :rows="4"
                   />
                   <!-- Botones del formulario -->
                   <div class="flex justify-end mt-2">
@@ -91,5 +108,8 @@ function submit(){
 </template>
 
 <style scoped>
-
+.form-container {
+    max-height: 80vh; /* Altura máxima del formulario */
+    overflow-y: auto; /* Añadir scroll si el contenido excede la altura máxima */
+}
 </style>
