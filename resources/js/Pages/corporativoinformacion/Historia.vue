@@ -20,19 +20,19 @@ const props = defineProps({
                 <div class="grid grid-cols-3 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
                     <div class="flex items-center justify-center">
                         <div class="grid grid-rows-3">
-                                <div class="flex items-end justify-center">
+                                <div class="h-48 w-48 flex items-center justify-end bg-white rounded-full transition-all duration-300 hover:brightness-110  hover:scale-105">
                                     <ApplicationLogoMarpin
-                                        class="block h-52 w-52 fill-current text-gray-800 mb-5"
+                                        class="block h-48 w-52 fill-current text-gray-800 mb-5"
                                     />
                                 </div>
-                            <div class="flex items-start justify-start">
+                            <div class="rounded-full h-52 w-52 flex items-center justify-start bg-white transition-all duration-300 hover:brightness-110  hover:scale-105">
                                 <ApplicationLogoPivaz
-                                    class="block h-48 w-64 fill-current text-gray-800 mb-6"
+                                    class="block h-52 w-64 fill-current text-gray-800 mb-6"
                                 />
                             </div>
-                            <div class="flex items-start justify-start">
+                            <div class="mt-5 h-36 w-40 flex items-center justify-end bg-white transition-all duration-300 hover:brightness-110  hover:scale-105 rounded-full">
                                 <ApplicationLogoDistrimex
-                                    class="block h-40 w-80 fill-current text-gray-800 mb-6"
+                                    class="block h-40 w-48 fill-current text-gray-800 mb-5"
                                 />
                             </div>
                         </div>
@@ -47,12 +47,12 @@ const props = defineProps({
                     </div>
                     <div class="flex items-center justify-center">
                         <div class="grid grid-rows-3">
-                            <div class="flex items-end justify-end mt-5 ml-4">
+                            <div class="h-40 w-44 flex items-center justify-end mt-5 ml-4 bg-white transition-all duration-300 hover:brightness-110  hover:scale-105 rounded-full">
                                 <ApplicationLogoGPGaso
-                                    class="block h-40 w-52 fill-current text-gray-800 mb-5"
+                                    class="block h-40 w-52 fill-current text-gray-800 mt-1 mr-2"
                                 />
                             </div>
-                            <div class="flex items-start justify-start">
+                            <div class="h-52 w-52 flex items-center justify-start bg-white transition-all duration-300 hover:brightness-110  hover:scale-105 rounded-full">
                                 <ApplicationLogoHotel
                                     class="block h-52 w-64 fill-current text-gray-800 mb-6"
                                 />

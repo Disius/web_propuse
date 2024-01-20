@@ -40,4 +40,19 @@ class InformationController extends Controller
 //            'valores' => $empresa[0]->valores,
         ]);
     }
+    public function empresas(){
+        return Inertia::render('corporativoinformacion/Empresas', [
+//            'valores' => $empresa[0]->valores,
+        ]);
+    }
+
+    public function contacto(){
+        return Inertia::render('corporativoinformacion/Contacto');
+    }
+
+    public function bolsa(){
+        return Inertia::render('corporativoinformacion/bolsatrabajo/BolsaTrabajo', [
+
+        ]);
+    }
 }

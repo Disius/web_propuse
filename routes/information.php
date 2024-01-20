@@ -25,4 +25,7 @@ Route::prefix('informacion')->group(function (){
     Route::get('/nuestra-historia', [InformationController::class, 'nuestraHistoria'])->name('nuestra.historia');
     Route::get('/valores', [InformationController::class, 'valores'])->name('nuestros.valores');
     Route::get('/equipo-trabajo', [InformationController::class, 'equipo'])->name('equipo.trabajo');
+    Route::get('/empresas', [InformationController::class, 'empresas'])->name('index.empresas');
+    Route::get('/contacto', [InformationController::class, 'contacto'])->name('informacion.contacto');
+    Route::get('/trabajo', [InformationController::class, 'bolsa'])->name('bolsa.trabajo');
 });

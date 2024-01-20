@@ -3,6 +3,14 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+    build: {
+        // generate manifest.json in outDir
+        manifest: true,
+        rollupOptions: {
+            // overwrite default .html entry
+            input: '/resources/js/app.js',
+        },
+    },
     plugins: [
         laravel({
             input: 'resources/js/app.js',

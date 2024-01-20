@@ -67,7 +67,7 @@ onUnmounted(() => {
                         </Link>
                         <div class="container mx-auto px-6">
                             <nav class="flex items-center justify-between space-x-4">
-                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
 <!--                                    <div class="relative text-left inline-flex flex-col">-->
                                         <button
                                             class="text-red-600 hover:text-gray-900 transition duration-300 text-lg"
@@ -82,9 +82,10 @@ onUnmounted(() => {
                                             <Link :href="route('nuestros.valores')" class="block p-3 border-b border-gray-300 hover:bg-red-500 hover:text-white">VALORES</Link>
                                         </div>
 <!--                                    </div>-->
-                                    <button class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</button>
-                                    <Link :href="route('equipo.trabajo')" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO DE TRABAJO</Link>
-                                    <button class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</button>
+                                    <Link :href="route('index.empresas')" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRAS EMPRESAS</Link>
+                                    <Link :href="route('equipo.trabajo')" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">NUESTRO EQUIPO</Link>
+                                    <Link :href="route('bolsa.trabajo')" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">BOLSA DE TRABAJO</Link>
+                                    <Link :href="route('informacion.contacto')" class="text-red-600 hover:text-gray-900 transition duration-300 text-lg">CONTÁCTANOS</Link>
                                 </div>
                                 <div class="ml-16 pl-16 flex items-center sm:hidden">
                                     <button

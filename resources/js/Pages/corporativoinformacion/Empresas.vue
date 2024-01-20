@@ -2,18 +2,14 @@
 import MainLayout from "@/Layouts/MainLayout.vue";
 import {ref} from "vue";
 
-//tomar referencia para vacantes
-
 const currentSlide = ref(0)
 const itemsPerPage = ref(4)
 const images = ref([
-    '/storage/img/equipo1.jpg',
-    '/storage/img/equipo2.jpg',
-    '/storage/img/equipo3.jpg',
-    '/storage/img/equipo4.jpg',
-    '/storage/img/equipo5.jpg',
-    '/storage/img/equipo6.jpg',
-    '/storage/img/equipo7.jpg',
+    '/storage/img/LOGOMARPIN01.png',
+    '/storage/img/LOGOPinedaReal.png',
+    '/storage/img/logomuebleria.png',
+    '/storage/img/PNG.png',
+    '/storage/img/LOGOGASOLINERASGP.png',
 ]);
 
 
@@ -31,20 +27,20 @@ const prevSlide = () => {
     <MainLayout>
         <div class="grid grid-cols-1">
             <div class="flex mx-auto justify-center">
-                <div class="text-white text-center text-4xl">Equipo de trabajo</div>
+                <div class="text-white text-center text-4xl">Empresas</div>
             </div>
             <div class="flex mx-auto justify-center">
-                <div class="text-white text-center text-xl">Somos un equipo profesional comprometidos con cada uno de nuestros socios comerciales, con la responsabilidad de cubrir todas y cada unas de sus necesidades y requerimientos</div>
+                <div class="text-white text-center text-xl"></div>
             </div>
         </div>
         <div class="container mx-auto mt-8">
             <div class="relative overflow-hidden">
                 <div class="flex transition-transform ease-in-out duration-300" :style="{ transform: `translateX(-${currentSlide * (100 / itemsPerPage)}%)` }">
-                    <div v-for="(image, index) in images" :key="index" class="w-48 mr-4 ml-5 flex-shrink-0">
+                    <div v-for="(image, index) in images" :key="index" class="w-48 h-48 mr-4 ml-14 flex-shrink-0">
                         <!-- Contenido del slider -->
                         <div class="flex items-center justify-center">
                             <div class="w-full h-full overflow-hidden rounded-md group-hover:after:bg-red-500">
-                                <img :src="image" :alt="'Trabajador ' + (index + 1)" class="w-full h-full object-cover rounded-md hover:brightness-110 transform hover:scale-105 hover:bg-red-500 hover:ring-red-500 transition-all duration-300">
+                                <img :src="image" :alt="'Trabajador ' + (index + 1)" class="w-full h-full object-cover rounded-md hover:brightness-110 transform hover:scale-105 hover:bg-white hover:ring-white transition-all duration-300">
                             </div>
                         </div>
                     </div>
@@ -58,12 +54,5 @@ const prevSlide = () => {
 </template>
 
 <style scoped>
- group-hover::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-}
+
 </style>

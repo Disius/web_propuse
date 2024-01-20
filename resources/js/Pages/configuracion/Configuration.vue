@@ -16,6 +16,16 @@ const props = defineProps({
     errors: Object,
     empresa: Array
 })
+const config = ref([
+    {
+        type: "Datos informativos de la empresa",
+        evento: () => {
+            openFormEmpresa.value = !openFormEmpresa.value
+        },
+        imagen: "/storage/img/add_img.png"
+    },
+    // {type: "Vacantes", route: "config.main", imagen: "/storage/img/trabajo.jpg"}
+])
 const snackSuccess = () => {
     messege.value = "¡Operación completada con éxito!"
     timeout.value = 5000
@@ -69,27 +79,24 @@ function submitEmpresa(form){
             </Link>
         </template>
        <div :class="{ 'filter blur-sm': openFormEmpresa }">
-           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
-               <!--            <div v-for="i in arr" :key="i">-->
-               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
-                   <div class="flex justify-start">
-                       <div class="max-w-6xl mx-auto">
-                           <div class="w-full sm:w-2/3 lg:w-1/12 xl:w-11/12 h-48 sm:h-2/3 lg:h-1/2 xl:h-1/2" @click="openFormEmpresa = !openFormEmpresa">
-                               <!--                        <Link :href="route('config.main')" as="button">-->
-                               <div class="max-w-full rounded overflow-hidden shadow-lg relative transition-transform transform hover:scale-105 hover:bg-red-500 hover:ring-red-500">
+           <div class="py-12">
+               <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                       <div v-for='(menu, index) in config' :key="index" class="w-full sm:w-2/3 lg:w-1/2 xl:w-1/5">
+<!--                           <Link :href="route(menu.route)" as="button">-->
+                               <div class="h-full w-52 rounded overflow-hidden shadow-lg relative transition-transform transform hover:scale-105 hover:bg-red-500 hover:ring-red-500 hover:text-white" @click="menu.evento()">
                                    <div class="flex items-center justify-center">
-                                       <img src="/storage/img/add_img.png" alt="">
+                                       <img :src="menu.imagen" alt="">
                                    </div>
-
-                                   <div class="px-6 py-4 flex justify-center">
-                                       <p class="text-gray-700 text-base">
-                                           Crear datos de la empresa.
+                                   <div class="px-6 py-4 flex justify-center items-center">
+                                       <p class="text-gray-700 text-base hover:text-white text-4xl">
+                                           {{menu.type}}
                                        </p>
                                    </div>
-                                   <FormularioEmpresa :empresa="props.empresa" :show="openFormEmpresa" @update:show="openFormEmpresa = $event" @form:empresa="submitEmpresa"></FormularioEmpresa>
                                </div>
-                           </div>
+<!--                           </Link>-->
                        </div>
+                       <FormularioEmpresa :empresa="props.empresa" :show="openFormEmpresa" @update:show="openFormEmpresa = $event" @form:empresa="submitEmpresa"></FormularioEmpresa>
                    </div>
                </div>
            </div>

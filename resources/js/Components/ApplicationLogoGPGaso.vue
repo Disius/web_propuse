@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <div class="rounded-xl bg-white"
+    <div class="rounded-full"
          :style="bgimage">
 
     </div>
