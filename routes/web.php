@@ -21,7 +21,10 @@ use Inertia\Inertia;
 Route::get('/', [Controller::class, 'welcome'])->name('main');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $user = auth()->user();
+    return Inertia::render('Dashboard', [
+        'acceder_usuarios' => $user->hasPermissionTo('usuarios_access')
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

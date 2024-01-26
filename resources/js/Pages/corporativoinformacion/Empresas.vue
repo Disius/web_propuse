@@ -5,11 +5,11 @@ import {ref} from "vue";
 const currentSlide = ref(0)
 const itemsPerPage = ref(4)
 const images = ref([
-    '/storage/img/LOGOMARPIN01.png',
-    '/storage/img/LOGOPinedaReal.png',
     '/storage/img/logomuebleria.png',
-    '/storage/img/PNG.png',
+    '/storage/img/LOGOMARPIN01.png',
     '/storage/img/LOGOGASOLINERASGP.png',
+    '/storage/img/LOGOPinedaReal.png',
+    // '/storage/img/PNG.png',
 ]);
 
 

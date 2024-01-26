@@ -30,11 +30,15 @@ function submit(){
 
 
 onMounted(() => {
-    props.empresa[0].quienesSomos !== null ? form.quienesSomos = props.empresa[0].quienesSomos : form.quienesSomos
-    props.empresa[0].mision !== null ? form.mision = props.empresa[0].mision : form.mision
-    props.empresa[0].vision !== null ? form.vision = props.empresa[0].vision : form.vision
-    props.empresa[0].valores !== null ? form.valores = props.empresa[0].valores : form.valores
-    props.empresa[0].historia !== null ? form.historia = props.empresa[0].historia : form.vision
+    if (props.empresa.length === 0){
+        return form
+    }else{
+        props.empresa[0].quienesSomos !== null ? form.quienesSomos = props.empresa[0].quienesSomos : form.quienesSomos
+        props.empresa[0].mision !== null ? form.mision = props.empresa[0].mision : form.mision
+        props.empresa[0].vision !== null ? form.vision = props.empresa[0].vision : form.vision
+        props.empresa[0].valores !== null ? form.valores = props.empresa[0].valores : form.valores
+        props.empresa[0].historia !== null ? form.historia = props.empresa[0].historia : form.vision
+    }
 })
 </script>
 

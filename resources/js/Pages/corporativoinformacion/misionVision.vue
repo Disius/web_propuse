@@ -5,7 +5,7 @@ const props = defineProps({
     mision: String,
     vision: String,
 })
-console.log(props.mision)
+// console.log(props.mision)
 </script>
 
 <template>

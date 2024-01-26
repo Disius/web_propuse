@@ -14,7 +14,8 @@ const color = ref("")
 
 const props = defineProps({
     errors: Object,
-    empresa: Array
+    empresa: Array,
+    permiso_crear_empresa: Boolean,
 })
 const config = ref([
     {
@@ -22,9 +23,9 @@ const config = ref([
         evento: () => {
             openFormEmpresa.value = !openFormEmpresa.value
         },
-        imagen: "/storage/img/add_img.png"
+        imagen: "/storage/img/add_img.png",
+        permiso: props.permiso_crear_empresa
     },
-    // {type: "Vacantes", route: "config.main", imagen: "/storage/img/trabajo.jpg"}
 ])
 const snackSuccess = () => {
     messege.value = "¡Operación completada con éxito!"
@@ -46,7 +47,7 @@ const snackError = () => {
 }
 
 function submitEmpresa(form){
-    if (!props.empresa){
+    if (props.empresa.length === 0){
         form.post(route('create.empresa'), {
             onSuccess: () => {
                 openFormEmpresa.value = false
@@ -74,7 +75,7 @@ function submitEmpresa(form){
 <template>
     <AuthenticatedLayout>
         <template #header>
-            <Link :href="route('dashboard')" as="button" class="boton-volver">
+            <Link :href="route('dashboard')" as="button" class="rounded-full h-12 w-12">
                 <i class="material-icons">arrow_back</i>
             </Link>
         </template>
@@ -84,16 +85,18 @@ function submitEmpresa(form){
                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                        <div v-for='(menu, index) in config' :key="index" class="w-full sm:w-2/3 lg:w-1/2 xl:w-1/5">
 <!--                           <Link :href="route(menu.route)" as="button">-->
-                               <div class="h-full w-52 rounded overflow-hidden shadow-lg relative transition-transform transform hover:scale-105 hover:bg-red-500 hover:ring-red-500 hover:text-white" @click="menu.evento()">
+                            <div v-if="menu.permiso">
+                                <div class="h-full w-52 rounded overflow-hidden shadow-lg relative transition-transform transform hover:scale-105 hover:bg-red-500 hover:ring-red-500 hover:text-white" @click="menu.evento()">
                                    <div class="flex items-center justify-center">
                                        <img :src="menu.imagen" alt="">
                                    </div>
                                    <div class="px-6 py-4 flex justify-center items-center">
-                                       <p class="text-gray-700 text-base hover:text-white text-4xl">
+                                       <p class="text-gray-700 hover:text-white text-2xl text-center">
                                            {{menu.type}}
                                        </p>
                                    </div>
                                </div>
+                            </div>
 <!--                           </Link>-->
                        </div>
                        <FormularioEmpresa :empresa="props.empresa" :show="openFormEmpresa" @update:show="openFormEmpresa = $event" @form:empresa="submitEmpresa"></FormularioEmpresa>

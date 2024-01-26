@@ -129,9 +129,6 @@ onUnmounted(() => {
 
             <div class="relative h-screen bg-cover bg-center w-full" style="background-image:  linear-gradient(rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.3)),  url('/storage/img/FONDODEIMAGEN.png');">
                 <div class="container mx-auto flex items-center justify-center h-full">
-<!--                    <div style="background-image: url('/storage/img/LOGOENBLANCO.png'); background-size: contain; background-position: center center;" class="w-4/5 h-4/5 bg-contain bg-no-repeat flex items-center justify-center">-->
-
-<!--                    </div>-->
                     <main class="">
                         <slot/>
                     </main>

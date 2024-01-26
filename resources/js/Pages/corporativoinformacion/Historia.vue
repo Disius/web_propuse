@@ -57,11 +57,11 @@ const props = defineProps({
                                     class="block h-52 w-64 fill-current text-gray-800 mb-6"
                                 />
                             </div>
-                            <div class="flex items-start justify-start">
+                            <!-- <div class="flex items-start justify-start">
                                 <ApplicationLogoGP
                                     class="block h-40 w-60 fill-current text-gray-800 mb-6"
                                 />
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -12,10 +12,13 @@ class ConfigurationController extends Controller
 {
     public function configuration(): \Inertia\Response
     {
+        $user = auth()->user();
         return Inertia::render('configuracion/Configuration', [
             'empresa' => EmpresaNaercris::getEmpresa(),
+            'permiso_crear_empresa' => $user->hasPermissionTo('create empresa'),
         ]);
     }
+
     public function create_empresa(Request $request){
         $request->validate([
             'quienesSomos' => 'required',
@@ -34,6 +37,7 @@ class ConfigurationController extends Controller
             return back()->withErrors('Registro no creado, el error es:'.$exception->getMessage());
         }
     }
+
     public function update_empresa(Request $request, $id){
         $request->validate([
             'quienesSomos' => 'required',
@@ -50,5 +54,12 @@ class ConfigurationController extends Controller
         } catch (\Exception $exception){
             return back()->withErrors('Registro no creado, el error es:'.$exception->getMessage());
         }
+    }
+
+    public function configUsers(){
+
+        return Inertia::render('configuracion/usuarios/UsersAdmin', [
+
+        ]);
     }
 }
