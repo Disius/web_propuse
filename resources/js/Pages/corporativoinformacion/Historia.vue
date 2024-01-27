@@ -16,15 +16,16 @@ const props = defineProps({
 <template>
     <MainLayout>
 <!--        <div class="relative h-screen bg-cover bg-center w-full" style="background-image:  linear-gradient(rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.3)),  url('/storage/img/FONDODEIMAGEN.png');">-->
+        <div class="py-12">
             <div class="mx-auto max-w-screen-xl container flex items-center justify-center h-full">
                 <div class="grid grid-cols-3 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
                     <div class="flex items-center justify-center">
                         <div class="grid grid-rows-3">
-                                <div class="h-48 w-48 flex items-center justify-end bg-white rounded-full transition-all duration-300 hover:brightness-110  hover:scale-105">
-                                    <ApplicationLogoMarpin
-                                        class="block h-48 w-52 fill-current text-gray-800 mb-5"
-                                    />
-                                </div>
+                            <div class="h-48 w-48 flex items-center justify-end bg-white rounded-full transition-all duration-300 hover:brightness-110  hover:scale-105">
+                                <ApplicationLogoMarpin
+                                    class="block h-48 w-52 fill-current text-gray-800 mb-5"
+                                />
+                            </div>
                             <div class="rounded-full h-52 w-52 flex items-center justify-start bg-white transition-all duration-300 hover:brightness-110  hover:scale-105">
                                 <ApplicationLogoPivaz
                                     class="block h-52 w-64 fill-current text-gray-800 mb-6"
@@ -66,6 +67,7 @@ const props = defineProps({
                     </div>
                 </div>
             </div>
+        </div>
 <!--        </div>-->
     </MainLayout>
 </template>

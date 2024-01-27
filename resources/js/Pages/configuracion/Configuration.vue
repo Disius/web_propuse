@@ -76,7 +76,7 @@ function submitEmpresa(form){
     <AuthenticatedLayout>
         <template #header>
             <Link :href="route('dashboard')" as="button" class="rounded-full h-12 w-12">
-                <i class="material-icons">arrow_back</i>
+                <i class="mdi mdi-arrow-left-bold mdi-36px"></i>
             </Link>
         </template>
        <div :class="{ 'filter blur-sm': openFormEmpresa }">

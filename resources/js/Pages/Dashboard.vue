@@ -5,11 +5,13 @@ import {ref} from "vue";
 
 const props = defineProps({
     acceder_usuarios: Boolean,
+    vacantes: Boolean,
 })
 
 const dash = ref([
     {type: "Configuracion", route: "config.main", imagen: "/storage/img/tool.png", permiso: true},
-    {type: "Usuarios", route: "users.view", imagen: "/storage/img/trabajo.jpg", permiso: props.acceder_usuarios},
+    {type: "Usuarios", route: "users.view", imagen: "/storage/img/usuarios.png", permiso: props.acceder_usuarios},
+    {type: "Vacantes", route: "vacante.index", imagen: "/storage/img/trabajo.jpg", permiso: props.vacantes},
 ])
 </script>
 

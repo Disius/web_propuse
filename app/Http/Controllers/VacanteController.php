@@ -26,7 +26,7 @@ class VacanteController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

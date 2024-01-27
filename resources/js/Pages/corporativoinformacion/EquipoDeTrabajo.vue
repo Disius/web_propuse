@@ -50,8 +50,8 @@ const prevSlide = () => {
                     </div>
                 </div>
                 <!-- Botones de navegación -->
-                <button @click="prevSlide" class="bg-black rounded-full absolute top-1/2 left-4 transform -translate-y-1/2 text-2xl text-gray-700 sm:mr-5"><i class="material-icons">keyboard_arrow_left</i></button>
-                <button @click="nextSlide" class="bg-black rounded-full absolute top-1/2 right-4 transform -translate-y-1/2 text-2xl text-gray-700"><i class="material-icons">keyboard_arrow_right</i></button>
+                <button @click="prevSlide" class="bg-black rounded-full absolute top-1/2 left-4 transform -translate-y-1/2 text-2xl text-gray-700 sm:mr-5"><i class="mdi mdi-arrow-left-bold mdi-24px"></i></button>
+                <button @click="nextSlide" class="bg-black rounded-full absolute top-1/2 right-4 transform -translate-y-1/2 text-2xl text-gray-700"><i class="mdi mdi-arrow-right-bold mdi-24px"></i></button>
             </div>
         </div>
     </MainLayout>
