@@ -15,7 +15,7 @@ class ConfigurationController extends Controller
         $user = auth()->user();
         return Inertia::render('configuracion/Configuration', [
             'empresa' => EmpresaNaercris::getEmpresa(),
-            'permiso_crear_empresa' => $user->hasPermissionTo('create empresa'),
+            'permiso_crear_empresa' => $user->hasPermissionTo('crear empresa'),
         ]);
     }
 

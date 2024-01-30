@@ -4,8 +4,12 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\VacanteController;
+use App\Models\User;
+use App\Models\Vacante;
+use App\Policies\UserPolicy;
 use App\Policies\VacantePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,7 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        Vacante::class => VacantePolicy::class
+        Vacante::class => VacantePolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -23,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('view-users', [UserPolicy::class, 'viewAny']);
+        Gate::define('view-permisos', [UserPolicy::class, 'permisos_View']);
+        Gate::define('view-roles', [UserPolicy::class, 'roles_View']);
     }
 }

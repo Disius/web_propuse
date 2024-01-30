@@ -26,7 +26,7 @@ class VacanteController extends Controller
      */
     public function create()
     {
-
+        return Inertia::render('RH/CreateVacante');
     }
 
     /**
@@ -50,7 +50,7 @@ class VacanteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**

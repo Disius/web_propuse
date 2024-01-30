@@ -23,8 +23,8 @@ Route::get('/', [Controller::class, 'welcome'])->name('main');
 Route::get('/dashboard', function () {
     $user = auth()->user();
     return Inertia::render('Dashboard', [
-        'acceder_usuarios' => $user->hasPermissionTo('usuarios_access'),
-        'vacantes' => $user->hasPermissionTo('index vacante')
+        'acceder_usuarios' => $user->hasPermissionTo('acceso usuarios'),
+        'vacantes' => $user->hasPermissionTo('acceso vacante')
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

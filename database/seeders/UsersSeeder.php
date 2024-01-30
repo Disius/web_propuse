@@ -20,22 +20,24 @@ class UsersSeeder extends Seeder
         ]);
         $admin->assignRole('administrador');
         $admin->givePermissionTo([
-            'usuarios_access',
-            'create empresa',
-            'edit empresa',
-            'update empresa',
-            'create usuarios',
-            'edit usuarios',
-            'update usuarios',
-            'delete usuarios',
-            'create permiso',
-            'edit permiso',
-            'update permiso',
-            'delete permiso',
-            'create roles',
-            'edit roles',
-            'update roles',
-            'delete roles',
+            'crear empresa',
+            'editar empresa',
+            'actualizar empresa',
+            'acceso usuarios',
+            'crear usuarios',
+            'editar usuarios',
+            'actualizar usuarios',
+            'borrar usuarios',
+            'acceso permisos',
+            'crear permiso',
+            'editar permiso',
+            'actualizar permiso',
+            'borrar permiso',
+            'acceso roles',
+            'crear roles',
+            'editar roles',
+            'actualizar roles',
+            'borrar roles',
         ]);
 
         $rh_user = User::create([
@@ -44,12 +46,12 @@ class UsersSeeder extends Seeder
         ]);
         $rh_user->assignRole('RH');
         $rh_user->givePermissionTo([
-            'index vacante',
-            'create vacante',
-            'show vacante',
-            'edit vacante',
-            'update vacante',
-            'delete vacante',
+            'acceso vacante',
+            'crear vacante',
+            'mostrar vacante',
+            'editar vacante',
+            'actualizar vacante',
+            'borrar vacante',
         ]);
     }
 }

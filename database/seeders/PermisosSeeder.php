@@ -15,8 +15,8 @@ class PermisosSeeder extends Seeder
     public function run(): void
     {
         //permisos de vacante
-        Permission::create(['name' => 'Todas las vacante']);
-        Permission::create(['name' => 'crear vacantes']);
+        Permission::create(['name' => 'acceso vacante']);
+        Permission::create(['name' => 'crear vacante']);
         Permission::create(['name' => 'mostrar vacante']);
         Permission::create(['name' => 'editar vacante']);
         Permission::create(['name' => 'actualizar vacante']);
@@ -32,11 +32,13 @@ class PermisosSeeder extends Seeder
         Permission::create(['name' => 'actualizar usuarios']);
         Permission::create(['name' => 'borrar usuarios']);
         //permisos
+        Permission::create(['name' => 'acceso permisos']);
         Permission::create(['name' => 'crear permiso']);
         Permission::create(['name' => 'editar permiso']);
         Permission::create(['name' => 'actualizar permiso']);
         Permission::create(['name' => 'borrar permiso']);
         //roles
+        Permission::create(['name' => 'acceso roles']);
         Permission::create(['name' => 'crear roles']);
         Permission::create(['name' => 'editar roles']);
         Permission::create(['name' => 'actualizar roles']);

@@ -13,6 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 
     public function welcome(){
+//        Hola
         return Inertia::render('Welcome', [
             'empresa' => EmpresaNaercris::getEmpresa()
         ]);
