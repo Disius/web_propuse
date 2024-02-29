@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\EmpresaNaercris;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use App\Models\User;
+use Spatie\Permission\Models\Permission;
+
+class UsersController extends Controller
+{
+    public function users_view(){
+         if (! Gate::allows('view-users', auth()->user())) {
+            abort(403, 'Tu usuario no puede acceder a este recurso');
+        }
+
+        $users =  User::where('id', '!=', auth()->user()->id) != null ? User::where('id', '!=', auth()->user()->id)
+        ->with('permissions', 'roles')
+        ->get() : null;
+
+        return Inertia::render('configuracion/usuarios/UsersAdmin', [
+            'usuarios' => $users,
+        ]);
+    }
+
+    public function edit_users(){
+        return Inertia::render('configuracion/usuarios/crud/EditUsers');
+    }
+
+//    permisos
+    public function permisos(){
+        if (! Gate::allows('view-permisos', auth()->user())) {
+            abort(403, 'Tu usuario no puede acceder a este recurso');
+        }
+        return Inertia::render('configuracion/usuarios/permisos/Permisos');
+    }
+
+    public function create_permiso(Request $request){
+        if (! Gate::allows('create-permisos', auth()->user())) {
+            abort(403, 'Tu usuario no puede acceder a este recurso');
+        }
+
+        $request->validate([
+            'permiso' => 'required'
+        ]);
+
+        try {
+            DB::beginTransaction();
+            Permission::create(['name' => $request->permiso]);
+            DB::commit();
+            return Redirect::route('permisos.all');
+
+        } catch (\Exception $exception){
+            return back()->withErrors('Registro no creado, el error es:'.$exception->getMessage());
+        }
+    }
+}
