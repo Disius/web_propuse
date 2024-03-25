@@ -7,6 +7,7 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 import ApplicationLogoGuest from "@/Components/ApplicationLogoGuest.vue";
+import LogoNaercris from "@/Components/LogoNaercris.vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -22,7 +23,7 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogoGuest
+                                    <LogoNaercris
                                         class="block h-16 w-32 fill-current text-gray-800"
                                     />
                                 </Link>

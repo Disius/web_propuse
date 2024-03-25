@@ -90,9 +90,9 @@ onMounted(() => {
         </template>
 
         <div class="py-12">
-            <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-4xl hover:brightness-100">
+            <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-7xl hover:brightness-100">
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         <div class="flex justify-center items-center">
                             <div>
                                 <InputLabel for="cargo" value="Cargo" />
@@ -146,36 +146,37 @@ onMounted(() => {
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-center mt-8">
-                        <div class="w-full max-w-md">
-                            <InputLabel for="area" value="Área" />
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="flex justify-center mt-8">
+                            <div class="w-full max-w-md">
+                                <InputLabel for="area" value="Área" />
 
-                            <v-select v-model="form.area" variant="solo" :items="area" item-title="title" item-value="value" :select-props="{ menuProps: 'max-height: 200px; overflow-y: auto;', class: 'w-full' }"></v-select>
+                                <v-select v-model="form.area" variant="solo" :items="area" item-title="title" item-value="value" :select-props="{ menuProps: 'max-height: 200px; overflow-y: auto;', class: 'w-full' }"></v-select>
 
-                            <InputError class="mt-2" />
+                                <InputError class="mt-2" />
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-center mt-7">
-                            <div class="grid grid-cols-2">
-                                <InputLabel for="tareas" value="Descripción de tareas" class="mt-3"/>
-                                <div class="flex justify-start ml-5">
-                                    <div class="mb-3">
-                                        <v-tooltip location="right">
-                                            <template v-slot:activator="{ props }">
-                                                <v-btn icon v-bind="props" color="warning" size="small">
-                                                    <v-icon>
-                                                        mdi-help
-                                                    </v-icon>
-                                                </v-btn>
-                                            </template>
-                                            <span>NO DEBE AGREGAR ENLACES, LINKS NI NINGUN NÚMERO TELEFONICO</span>
-                                        </v-tooltip>
+                        <div>
+                            <div class="flex justify-center mt-7">
+                                <div class="grid grid-cols-2">
+                                    <InputLabel for="tareas" value="Descripción de tareas" class="mt-3"/>
+                                    <div class="flex justify-start ml-5">
+                                        <div class="mb-3">
+                                            <v-tooltip location="right">
+                                                <template v-slot:activator="{ props }">
+                                                    <v-btn icon v-bind="props" color="warning" size="small">
+                                                        <v-icon>
+                                                            mdi-help
+                                                        </v-icon>
+                                                    </v-btn>
+                                                </template>
+                                                <span>NO DEBE AGREGAR ENLACES, LINKS NI NINGUN NÚMERO TELEFONICO</span>
+                                            </v-tooltip>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex justify-center ma-5">
+                            <div class="flex justify-center ma-5">
                             <TextArea
                                 id="name"
                                 type="text"
@@ -185,6 +186,7 @@ onMounted(() => {
                                 required
                                 :rows="4"
                             />
+                            </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 gap-5">
@@ -241,25 +243,25 @@ onMounted(() => {
                             </div>
                         </div>
                     </div>
-<!--                    Contrato por 3 meses y el contrato indefinido -->
-<!--                    <div class="grid grid-cols-1 md:grid-cols-2 mt-5">-->
-                        <div class="flex justify-center">
-                            <div>
-                                <InputLabel for="contrato" value="Tipo de contrato" />
+                    <!--                    Contrato por 3 meses y el contrato indefinido -->
+                    <!--                    <div class="grid grid-cols-1 md:grid-cols-2 mt-5">-->
+                    <div class="flex justify-center">
+                        <div>
+                            <InputLabel for="contrato" value="Tipo de contrato" />
 
-<!--                                <div class="grid grid-cols-3">-->
-                                    <v-select
-                                        class="w-96" variant="solo"
-                                        :items="contrato" item-value="valor" item-title="etiqueta"
-                                    >
+                            <!--                                <div class="grid grid-cols-3">-->
+                            <v-select
+                                class="w-96" variant="solo"
+                                :items="contrato" item-value="valor" item-title="etiqueta"
+                            >
 
-                                    </v-select>
-<!--                                </div>-->
+                            </v-select>
+                            <!--                                </div>-->
 
-                                <InputError class="mt-2"  />
-                            </div>
+                            <InputError class="mt-2"  />
                         </div>
-<!--                    </div>-->
+                    </div>
+                    <!--                    </div>-->
                     <div class="grid grid-cols-1">
                         <div class="flex justify-center mt-5">
                             <div>

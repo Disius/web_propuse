@@ -22,7 +22,11 @@ const images = ref([
     '/storage/img/GPDISTRIBUIDORA.png',
     // '/storage/img/PNG.png',
 ]);
+const fondo_imagen = '/storage/img/FONDODEIMAGEN.png'
 
+// const images_i = computed(() => {
+//     return images.value.unshift(fondo_imagen)
+// })
 const formatValue = (text) => {
     const valuesArray = text.split('·')
     return valuesArray.join("<br>· ")
@@ -41,81 +45,76 @@ const prevSlide = () => {
 
 <template>
     <MainLayout>
-                <div class="grid gap-10 bg-gradient-to-b from-red-950 to-blue-950">
-                    <div class="relative bg-cover bg-center w-full h-full mt-16">
-                        <div class="relative bg-cover bg-center flex items-center justify-center h-full bg-white sm:rounded-2xl ma-10" style="background-image: url('/storage/img/FONDODEIMAGEN.png');">
-                            <div class="grid grid-cols-1">
-                                <div class="container mx-auto ml-5">
-                                    <div class="relative rounded-full">
-                                    <span class="text-justify md:ml-5 text-center text-xl font-semibold md:text-7xl text-white bg-red ma-10">
-                                        CORPORATIVO NAERCRIS
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center justify-center mt-10 mb-5 ma-8 ml-10">
-                                    <div class="text-justify text-2xl font-semibold md:text-3xl text-white ma-2">Nuestro grupo empresarial busca satisfacer las necesidades de nuestros clientes al ofrecer
-                                        los más altos estándares de calidad, seguridad y servicio.</div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="py-16 md:mt-16 ma-5 object-cover">
+<!--            <div class="max-w-md mx-auto rounded-xl shadow-md overflow-hidden md:max-w-7xl">-->
+                <div class="max-w-lg mx-auto rounded-xl shadow-md overflow-hidden md:max-w-7xl">
+                    <div class="flex justify-center relative bg-red-500">
+                        <div class=" tracking-wide text-lg md:text-8xl text-white font-semibold text-center">Corporativo Naercris</div>
                     </div>
-                    <div class="block max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-7xl hover:brightness-100 z-10">
-                        <div class="md:flex">
-                            <div class="container mx-auto mr-5">
-                                <div class="flex place-items-center justify-center mt-5 mb-5 ma-8 ml-10">
-                                    <div class="text-justify font-semibold text-4xl text-black ma-2 mt-10">Nuestras empresas</div>
-                                </div>
-                                <div class="relative overflow-hidden">
-                                    <div class="">
-                                      <div class="flex justify-center">
-                                        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 ml-16">
-                                          <div v-for="(image, index) in images" :key="index" class="w-48 h-48 flex-shrink-0">
-                                            <!-- Contenido del slider -->
-                                            <div class="flex items-center justify-center">
-                                              <div class="w-full h-full overflow-hidden group-hover:after:bg-red-500">
-                                                <img :src="image" :alt="'Empresa ' + (index + 1)" class="w-full h-full object-cover transform hover:scale-110 transition-all duration-300 scale-90">
-                                              </div>
+                    <div class="flex justify-center items-center text-white text-2xl bg-red-500 mt-10">
+                        <p class="ma-5">Somos un grupo empresarial que opera en varios sectores, ofreciendo una amplia gama de productos y servicios para todos nuestros clientes.</p>
+                    </div>
+<!--                    <div class="grid grid-cols-1 md:grid-cols-2 mr-16 mt-10">-->
+                        <div class="flex justify-center ma-10">
+                            <v-card width="500">
+                                <v-carousel
+                                    height="400"
+                                    show-arrows="hover"
+                                    color="red-lighten-5"
+                                    cycle
+                                    hide-delimiter-background
+                                    progress
+                                >
+                                    <v-carousel-item
+                                        v-for="(image, index) in images"
+                                        :key="index"
+                                    >
+                                        <v-sheet
+                                            height="100%"
+                                        >
+                                            <div class="d-flex fill-height justify-center align-center">
+                                                <img :src="image" alt="" class="h-54 w-full object-cover md:h-full md:w-96 scale-125 rounded-xl">
                                             </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1">
-                                    <p class="ma-5 text-center text-3xl">
-                                        A lo largo de los años, hemos evolucionado y diversificado nuestras actividades
-                                    </p>
-                                </div>
-                            </div>
+                                        </v-sheet>
+                                    </v-carousel-item>
+                                </v-carousel>
+                            </v-card>
                         </div>
-                    </div>
-                    <div class="flex items-center justify-center mb-5 ma-8 ml-10">
-                        <div class="text-justify font-semibold text-4xl text-white ma-2">Cada una busca contribuir en el desarrollo económico y social de las
-                            localidades en las que tienen operaciones.</div>
-                    </div>
-                    <div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-7xl w-full hover:brightness-100 ma-10" @click="showingNavigationDropdown = !showingNavigationDropdown">
-                        <div class="flex justify-center">
-                            <div class="grid grid-cols-2 md:grid-cols-2">
-                                <p class="ma-10 text-center text-2xl">Valores</p>
-                                <div class="mt-11">
-                                    <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>
-                                </div>
-                            </div>
+                        <div class="flex justify-center items-center text-white text-2xl bg-red-500">
+                            <p class="ma-5">Como parte de la globalización buscamos que nuestras marcas tengan mas impacto.</p>
                         </div>
-                        <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }">
-                            <div class="ma-10">
-                                <div class="grid md:grid-cols-2 sm:grid-cols-1 sm:px-4">
-                                    <div class="flex justify-center">
-                                        <div class="text-justify text-7xl bg-red-500 text-white h-36 w-58 mt-16">Nuestros Valores</div>
-                                    </div>
-                                    <div class="flex justify-center">
-                                        <div v-html="formatValue(props.empresa[0].valores)" class="text-black text-3xl sm:ml-12"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    </div>-->
                 </div>
+<!--                <div class="grid grid-cols-2 mr-16 mt-10">-->
+<!--                    <div class="flex justify-center">-->
+<!--                        <v-card width="500">-->
+<!--                            <v-carousel-->
+<!--                                height="400"-->
+<!--                                show-arrows="hover"-->
+<!--                                color="red-lighten-5"-->
+<!--                                cycle-->
+<!--                            >-->
+<!--                                <v-carousel-item-->
+<!--                                    v-for="(image, index) in images"-->
+<!--                                    :key="index"-->
+<!--                                >-->
+<!--                                    <v-sheet-->
+<!--                                        height="100%"-->
+<!--                                    >-->
+<!--                                        <div class="d-flex fill-height justify-center align-center">-->
+<!--                                            <img :src="image" alt="" class="h-54 w-full object-cover md:h-full md:w-96 scale-125 rounded-xl">-->
+<!--                                        </div>-->
+<!--                                    </v-sheet>-->
+<!--                                </v-carousel-item>-->
+<!--                            </v-carousel>-->
+<!--                        </v-card>-->
+<!--                    </div>-->
+<!--                    <div class="flex justify-center items-center text-white text-xl">-->
+<!--                        <p>Como parte de la globalización buscamos que nuestras marcas tengan mas impacto.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
     </MainLayout>
 </template>
 
